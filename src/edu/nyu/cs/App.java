@@ -9,10 +9,12 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.SystemUtils;
+import org.apache.commons.lang3.ObjectUtils.Null;
 
 import java.util.regex.Matcher;
 
 // some imports used by the UnfoldingMap library
+// pass
 import processing.core.PApplet;
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.geo.Location;
@@ -56,6 +58,7 @@ public class App extends PApplet {
 	public void keyPressed() {
 		// System.out.println("Key pressed: " + key);
 		// complete this method
+		System.out.println("Press key to view other maps: ");
 		Scanner scn = new Scanner(System.in);
 		char key = scn.next().charAt(0);
 		System.out.println("Key pressed: "+key);
@@ -89,12 +92,11 @@ public class App extends PApplet {
 	public void showMay2021MorningCounts(String[][] data) {
 		clearMap(); // clear any markers previously placed on the map
 		mapTitle = "May 2021 Morning Pedestrian Counts";
-
 		// complete this method - DELETE THE EXAMPLE CODE BELOW
 		String[] indicaters = data[0];
 		int column = -1;
 		for (int j=0; j<indicaters.length; j++) {
-			if (indicaters[j]=="May21_AM") {
+			if (indicaters[j].equals("May21_AM")) {
 				column = j;
 				break;
 			}
@@ -102,11 +104,11 @@ public class App extends PApplet {
 		float[] markerColor = {255, 0, 0, 127};
 		for (int i=1; i<data.length; i++) {
 			String[] line = data[i];
-			float lat = Float.parseFloat(line[0]);
-			float lng = Float.parseFloat(line[1]);
+			float lng = Float.parseFloat(line[0]);
+			float lat = Float.parseFloat(line[1]);
 			Location markerLocation = new Location(lat, lng);
 			int pedestrianCount = 0;
-			if (line[column]!="") {
+			if (!line[column].equals("")) {
 				pedestrianCount = Integer.parseInt(line[column]);
 			}
 			float markerRadius = pedestrianCount * SCALE_FACTOR;
@@ -139,7 +141,7 @@ public class App extends PApplet {
 		String[] indicaters = data[0];
 		int column = -1;
 		for (int j=0; j<indicaters.length; j++) {
-			if (indicaters[j]=="May21_PM") {
+			if (indicaters[j].equals("May21_PM")) {
 				column = j;
 				break;
 			}
@@ -147,11 +149,11 @@ public class App extends PApplet {
 		float[] markerColor = {255, 0, 0, 127};
 		for (int i=1; i<data.length; i++) {
 			String[] line = data[i];
-			float lat = Float.parseFloat(line[0]);
-			float lng = Float.parseFloat(line[1]);
+			float lng = Float.parseFloat(line[0]);
+			float lat = Float.parseFloat(line[1]);
 			Location markerLocation = new Location(lat, lng);
 			int pedestrianCount = 0;
-			if (line[column]!="") {
+			if (!line[column].equals("")) {
 				pedestrianCount = Integer.parseInt(line[column]);
 			}
 			float markerRadius = pedestrianCount * SCALE_FACTOR;
@@ -173,21 +175,21 @@ public class App extends PApplet {
 		int columnAM = -1;
 		int columnPM = -1;
 		for (int j=0; j<indicaters.length; j++) {
-			if (indicaters[j]=="May21_AM") {
+			if (indicaters[j].equals("May21_AM")) {
 				columnAM = j;
 			}
-			else if (indicaters[j]=="May21_PM") {
+			else if (indicaters[j].equals("May21_PM")) {
 				columnPM = j;
 			}
 		}
 		float[] markerColor = {255, 0, 0, 127};
 		for (int i=1; i<data.length; i++) {
 			String[] line = data[i];
-			float lat = Float.parseFloat(line[0]);
-			float lng = Float.parseFloat(line[1]);
+			float lng = Float.parseFloat(line[0]);
+			float lat = Float.parseFloat(line[1]);
 			Location markerLocation = new Location(lat, lng);
 			int pedestrianCount = 0;
-			if (line[columnPM]!="" && line[columnAM]!="") {
+			if (!line[columnPM].equals("") && !line[columnAM].equals("")) {
 				pedestrianCount = Integer.parseInt(line[columnPM])-Integer.parseInt(line[columnAM]);
 			}
 			float markerRadius = pedestrianCount * SCALE_FACTOR;
@@ -231,8 +233,8 @@ public class App extends PApplet {
 			// line = each row, int[]
 			String[] line = data[i];
 			// generate location
-			float lat = Float.parseFloat(line[0]);
-			float lng = Float.parseFloat(line[1]);
+			float lng = Float.parseFloat(line[0]);
+			float lat = Float.parseFloat(line[1]);
 			Location markerLocation = new Location(lat, lng);
 			// generate count
 			int pedestrianCount = 0;
@@ -243,7 +245,7 @@ public class App extends PApplet {
 			for (int j=0; j<3; j++) {
 				int column21_row = column21[j];
 				int column19_row = column19[j];
-				if (line[column21_row]=="" || line[column19_row]=="") {
+				if (line[column21_row].equals("") || line[column19_row].equals("")) {
 					countZero = true;
 					break;
 				}
@@ -276,7 +278,7 @@ public class App extends PApplet {
 		String[] indicaters = data[0];
 		int column = -1;
 		for (int j=0; j<indicaters.length; j++) {
-			if (indicaters[j]=="May15_AM") {
+			if (indicaters[j].equals("May15_AM")) {
 				column = j;
 				break;
 			}
@@ -284,11 +286,11 @@ public class App extends PApplet {
 		float[] markerColor = {255, 0, 0, 127};
 		for (int i=1; i<data.length; i++) {
 			String[] line = data[i];
-			float lat = Float.parseFloat(line[0]);
-			float lng = Float.parseFloat(line[1]);
+			float lng = Float.parseFloat(line[0]);
+			float lat = Float.parseFloat(line[1]);
 			Location markerLocation = new Location(lat, lng);
 			int pedestrianCount = 0;
-			if (line[column]!="") {
+			if (!line[column].equals("")) {
 				pedestrianCount = Integer.parseInt(line[column]);
 			}
 			float markerRadius = pedestrianCount * SCALE_FACTOR;
@@ -310,7 +312,7 @@ public class App extends PApplet {
 		String[] indicaters = data[0];
 		int column = -1;
 		for (int j=0; j<indicaters.length; j++) {
-			if (indicaters[j]=="May15_PM") {
+			if (indicaters[j].equals("May15_PM")) {
 				column = j;
 				break;
 			}
@@ -318,11 +320,11 @@ public class App extends PApplet {
 		float[] markerColor = {255, 0, 0, 127};
 		for (int i=1; i<data.length; i++) {
 			String[] line = data[i];
-			float lat = Float.parseFloat(line[0]);
-			float lng = Float.parseFloat(line[1]);
+			float lng = Float.parseFloat(line[0]);
+			float lat = Float.parseFloat(line[1]);
 			Location markerLocation = new Location(lat, lng);
 			int pedestrianCount = 0;
-			if (line[column]!="") {
+			if (!line[column].equals("")) {
 				pedestrianCount = Integer.parseInt(line[column]);
 			}
 			float markerRadius = pedestrianCount * SCALE_FACTOR;
@@ -384,7 +386,7 @@ public class App extends PApplet {
 		String[][] res = new String[lines.length][];
 		for (int i=0; i<lines.length; ++i) {
 			String eachLine = lines[i];
-			String[] temp = eachLine.split(",");
+			String[] temp = eachLine.split(",",-1);
 			if (i==0) {
 				res[i] = temp; // the first line indicates the data value types: store them as they were
 				continue;
@@ -395,7 +397,7 @@ public class App extends PApplet {
 			// firstLineAry = {"POINT", "(-73.90459140730678", "40.87919896648574)"}
 			String[] firstPart = new String[2];
 			firstPart[0] = firstLineAry[1].substring(1,firstLineAry[1].length());
-			firstPart[1] = firstLineAry[2].substring(0, firstLineAry[2].length()-1);
+			firstPart[1] = firstLineAry[2].substring(0,firstLineAry[2].length()-1);
 			// firstPart = {"-73.90459140730678", "40.87919896648574"}
 			// merge firstPart (String[2]) and temp[2, end]
 			String[] eachLineAry = new String[temp.length];
@@ -422,8 +424,8 @@ public class App extends PApplet {
 	 * Put any initial setup of the window, the map, and markers here.
 	 */
 	public void setup() {
-		size(1200, 800, P2D); // set the map window size, using the OpenGL 2D rendering engine
-		// size(1200, 800); // set the map window size, using Java's default rendering engine (try this if the OpenGL doesn't work for you)
+		// size(1200, 800, P2D); // set the map window size, using the OpenGL 2D rendering engine
+		size(1200, 800); // set the map window size, using Java's default rendering engine (try this if the OpenGL doesn't work for you)
 		map = getMap(); // create the map and store it in the global-ish map variable
 
 		// load the data from the file... you will have to complete the functions called to make sure this works
@@ -439,6 +441,12 @@ public class App extends PApplet {
 
 			// by default, show markers for the morning counts in May 2021 (the third-to-last field in the CSV file)
 			showMay2021MorningCounts(data);
+
+			// showMay2021EveningCounts(data);
+			// showMay2021EveningMorningCountsDifference(data);
+			// showMay2021VersusMay2019Counts(data);
+			// customVisualization1(data);
+			// customVisualization2(data);
 
 			// various ways to zoom in / out
 			// map.zoomLevelOut();
